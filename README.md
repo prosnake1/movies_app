@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+!! НЕ ПОЛНАЯ ПОДДЕРЖКА АНГЛИЙСКОГО ЯЗЫКА В ПРИЛОЖЕНИИ !!
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
