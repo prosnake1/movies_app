@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "502157703095",
+    "firebase_url": "https://kinopoiskplus-22df7-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "kinopoiskplus-22df7",
+    "storage_bucket": "kinopoiskplus-22df7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502157703095:android:f2cd5c7f27c2ef0b265a32",
+        "android_client_info": {
+          "package_name": "com.bogdan.films_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClTRAMXMNG28fKi8DW_szSI_mawZxhXOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502157703095:android:9f17e4a22c7726ab265a32",
+        "android_client_info": {
+          "package_name": "com.bogdan.kinopoisk_plus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClTRAMXMNG28fKi8DW_szSI_mawZxhXOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502157703095:android:4a5d63dc81a7e7a7265a32",
+        "android_client_info": {
+          "package_name": "com.bogdan.movie_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClTRAMXMNG28fKi8DW_szSI_mawZxhXOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

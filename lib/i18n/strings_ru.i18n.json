@@ -1,0 +1,41 @@
+{
+    "language": "Русский",
+    "errors": {
+        "smth_went_wrong": "Что-то пошло не так",
+        "unknown" : "Неизвестно",
+        "null_user": "Пользователь не найден"
+    },
+    "home_page" : {
+        "home_title": "Главная страница",
+        "top_10_pop_films" : "Топ 10 популярных фильмов",
+        "logout" : "Выйти",
+        "russian" : "Русский",
+        "english": "Английский",
+        "collection" : "Коллекция",
+        "search_films": "Поиск фильмов"
+    },
+    "search_page": {
+        "search" : "Поиск",
+        "no_founded_films": "Нет найденных фильмов"
+    },
+    "film_page": {
+        "title" : "Детальная информация"
+    },
+    "collection_page" : {
+        "title" : "Моя Коллекция"
+    },
+    "login_page": {
+        "title": "Войти в аккаунт",
+        "email": "email",
+        "password": "Пароль",
+        "no_account_sign": "Нет аккаунта? Зарегистрироваться"
+    },
+    "sign_up_page": {
+        "title" : "Регистрация",
+        "name": "Имя",
+        "email": "e-mail",
+        "password": "Пароль",
+        "confirm_pass": "Подтвердить пароль",
+        "sign_in": "Зарегистрироваться"
+    }
+}

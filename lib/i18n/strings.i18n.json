@@ -1,0 +1,41 @@
+{
+    "language": "English",
+    "errors": {
+        "smth_went_wrong": "Something went wrong",
+        "unknown" : "Unknown",
+        "null_user": "User is null"
+    },
+    "home_page" : {
+        "home_title": "Home Page",
+        "top_10_pop_films" : "Top 10 Popular Films",
+        "logout" : "Log out",
+        "russian" : "Russian",
+        "english": "English",
+        "collection" : "Collection",
+        "search_films": "Search"
+    },
+    "search_page": {
+        "search" : "Search",
+        "no_founded_films": "No founded Films"
+    },
+    "film_page": {
+        "title": "Detail Information"
+    },
+    "collection_page" : {
+        "title" : "My Collection"
+    },
+    "login_page": {
+        "title": "Log in",
+        "email": "e-mail",
+        "password": "Password",
+        "no_account_sign": "No account? Then Sign in"
+    },
+    "sign_up_page": {
+        "title" : "Sign in",
+        "name": "Name",
+        "email": "e-mail",
+        "password": "Password",
+        "confirm_pass": "Confirm Password",
+        "sign_in": "Create account"
+    }
+}
