@@ -7,7 +7,6 @@ import 'package:get_it/get_it.dart';
 import 'package:movie_app/i18n/strings.g.dart';
 import 'package:movie_app/pages/collection_page/bloc/collection_bloc.dart';
 import 'package:movie_app/pages/film_page/bloc/film_info_bloc.dart';
-import 'package:movie_app/repositories/film_info/film_info.dart';
 import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:movie_app/theme/theme.dart';
 
@@ -23,7 +22,7 @@ class FilmPage extends StatefulWidget {
 }
 
 class _FilmPageState extends State<FilmPage> {
-  final _filmInfoBloc = FilmInfoBloc(GetIt.I.get<AbstractFilmInfoRep>());
+  final _filmInfoBloc = GetIt.I.get<FilmInfoBloc>();
   final _collectionBloc = CollectionBloc();
   @override
   void initState() {

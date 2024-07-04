@@ -8,7 +8,6 @@ import 'package:movie_app/i18n/strings.g.dart';
 import 'package:movie_app/pages/home_page/bloc/top_films_bloc.dart';
 import 'package:movie_app/pages/home_page/widgets/widgets.dart';
 import 'package:movie_app/repositories/sizes/custom_padding.dart';
-import 'package:movie_app/repositories/top_films/top_films.dart';
 import 'package:movie_app/theme/theme.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _topFilmsBloc = TopFilmsBloc(GetIt.I<AbstractTopFilmsRep>());
+  final _topFilmsBloc = GetIt.I.get<TopFilmsBloc>();
   @override
   void initState() {
     _topFilmsBloc.add(LoadTopFilmsList());
