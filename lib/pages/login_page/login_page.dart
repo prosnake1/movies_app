@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/i18n/strings.g.dart';
-import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:ndialog/ndialog.dart';
 
 class LoginPage extends StatefulWidget {
@@ -42,25 +41,21 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              child: TextField(
-                controller: emailController,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  labelText: context.t.login_page.email,
-                ),
+            TextField(
+              controller: emailController,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                labelText: context.t.login_page.email,
               ),
             ),
-            SizedBox(
-              height: 20.ph.height,
+            const SizedBox(
+              height: 20,
             ),
-            SizedBox(
-              child: TextField(
-                controller: passwordController,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  labelText: context.t.login_page.password,
-                ),
+            TextField(
+              controller: passwordController,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                labelText: context.t.login_page.password,
               ),
             ),
             TextButton(
