@@ -54,17 +54,17 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            _buildItem(
+            DrawerItem(
               icon: Icons.language_outlined,
               title: context.t.home_page.russian,
               onTap: () => LocaleSettings.setLocale(AppLocale.ru),
             ),
-            _buildItem(
+            DrawerItem(
               icon: Icons.language_outlined,
               title: context.t.home_page.english,
               onTap: () => LocaleSettings.setLocale(AppLocale.en),
             ),
-            _buildItem(
+            DrawerItem(
               icon: Icons.logout_outlined,
               title: context.t.home_page.logout,
               onTap: () {
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                     context: context,
                     builder: (context) => const SignOutAlertDialog());
               },
-            )
+            ),
           ],
         ),
       ),
@@ -175,21 +175,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-    );
-  }
-
-  _buildItem({
-    required IconData icon,
-    required String title,
-    required GestureTapCallback onTap,
-  }) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(
-        title,
-        style: lightTheme.textTheme.titleMedium,
-      ),
-      onTap: onTap,
     );
   }
 }
