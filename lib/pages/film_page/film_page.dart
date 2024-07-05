@@ -21,7 +21,6 @@ class FilmPage extends StatefulWidget {
 }
 
 class _FilmPageState extends State<FilmPage> {
-<<<<<<< HEAD
   final _filmInfoBloc = GetIt.I.get<FilmInfoBloc>();
   final _collectionBloc = GetIt.I.get<CollectionBloc>();
 =======

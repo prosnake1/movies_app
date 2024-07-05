@@ -29,7 +29,6 @@ void setup() {
   GetIt.I.registerLazySingleton<AbstractFilmInfoRep>(
     () => FilmInfoRepository(dio: dio),
   );
-<<<<<<< HEAD
   // Bloc
   GetIt.I.registerLazySingleton<SearchedFilmBloc>(
     () => SearchedFilmBloc(GetIt.I.get<AbstractSearchedFilmsRep>()),
