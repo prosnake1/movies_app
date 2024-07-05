@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+<<<<<<< HEAD
+import 'package:movie_app/pages/collection_page/bloc/collection_bloc.dart';
 import 'package:movie_app/pages/film_page/bloc/film_info_bloc.dart';
 import 'package:movie_app/pages/home_page/bloc/top_films_bloc.dart';
 import 'package:movie_app/pages/search_page/bloc/searched_films_bloc.dart';
+=======
+>>>>>>> adf824bae08de1b66c6c02efd594953273ae2df4
 import 'package:movie_app/repositories/film_info/film_info.dart';
 import 'package:movie_app/repositories/searched_films/searched_films.dart';
 import 'package:movie_app/repositories/top_films/top_films.dart';
@@ -16,7 +20,6 @@ final talker = TalkerFlutter.init();
 final dio = Dio();
 void setup() {
   setupTalker();
-  // repositories
   GetIt.I.registerLazySingleton<AbstractSearchedFilmsRep>(
     () => SearchedFilmsRepository(dio: dio),
   );
@@ -26,6 +29,7 @@ void setup() {
   GetIt.I.registerLazySingleton<AbstractFilmInfoRep>(
     () => FilmInfoRepository(dio: dio),
   );
+<<<<<<< HEAD
   // Bloc
   GetIt.I.registerLazySingleton<SearchedFilmBloc>(
     () => SearchedFilmBloc(GetIt.I.get<AbstractSearchedFilmsRep>()),
@@ -36,6 +40,11 @@ void setup() {
   GetIt.I.registerLazySingleton<FilmInfoBloc>(
     () => FilmInfoBloc(GetIt.I.get<AbstractFilmInfoRep>()),
   );
+  GetIt.I.registerLazySingleton<CollectionBloc>(
+    () => CollectionBloc(),
+  );
+=======
+>>>>>>> adf824bae08de1b66c6c02efd594953273ae2df4
 }
 
 void setupTalker() {

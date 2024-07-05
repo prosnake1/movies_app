@@ -9,10 +9,16 @@ class LoadCollectionList extends CollectionEvent {
   List<Object?> get props => [completer];
 }
 
-// floating action button ивенты ниже
-class CheckIfInCollection extends CollectionEvent {
-  CheckIfInCollection({required this.id});
-  final String id;
+class RemoveFilm extends CollectionEvent {
+  RemoveFilm({required this.id});
+  final int id;
   @override
-  List<Object> get props => [id];
+  List<Object?> get props => [id];
+}
+
+class AddFilm extends CollectionEvent {
+  AddFilm({required this.id});
+  final int id;
+  @override
+  List<Object?> get props => [];
 }

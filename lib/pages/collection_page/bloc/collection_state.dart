@@ -25,22 +25,3 @@ class CollectionListFailure extends CollectionState {
   @override
   List<Object?> get props => [exception];
 }
-
-// floating action button стейты
-
-class AddToCollection extends CollectionState {
-  AddToCollection({required this.icon, required this.filmInfo});
-  final List<FilmInfo> filmInfo;
-  final Icon icon;
-  @override
-  List<Object> get props => [filmInfo, icon];
-}
-
-class RemoveFromCollection extends CollectionState {
-  RemoveFromCollection({required this.icon, required this.filmId});
-  final Icon icon;
-  final String filmId;
-
-  @override
-  List<Object> get props => [icon, filmId];
-}

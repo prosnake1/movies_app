@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie_app/i18n/strings.g.dart';
 import 'package:movie_app/pages/collection_page/bloc/collection_bloc.dart';
 import 'package:movie_app/pages/film_page/bloc/film_info_bloc.dart';
+import 'package:movie_app/repositories/film_info/film_info.dart';
 import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:movie_app/theme/theme.dart';
 
@@ -22,11 +21,15 @@ class FilmPage extends StatefulWidget {
 }
 
 class _FilmPageState extends State<FilmPage> {
+<<<<<<< HEAD
   final _filmInfoBloc = GetIt.I.get<FilmInfoBloc>();
+  final _collectionBloc = GetIt.I.get<CollectionBloc>();
+=======
+  final _filmInfoBloc = FilmInfoBloc(GetIt.I.get<AbstractFilmInfoRep>());
   final _collectionBloc = CollectionBloc();
+>>>>>>> adf824bae08de1b66c6c02efd594953273ae2df4
   @override
   void initState() {
-    _collectionBloc.add(CheckIfInCollection(id: widget.id.toString()));
     _filmInfoBloc.add(LoadInfoList(id: widget.id));
     super.initState();
   }
@@ -41,6 +44,7 @@ class _FilmPageState extends State<FilmPage> {
         bloc: _filmInfoBloc,
         builder: (context, state) {
           if (state is LoadedInfoList) {
+            _collectionBloc.add(LoadCollectionList());
             final infoList = state.filmInfo[0];
             return SingleChildScrollView(
               child: Column(
@@ -125,41 +129,26 @@ class _FilmPageState extends State<FilmPage> {
       floatingActionButton: BlocBuilder<CollectionBloc, CollectionState>(
         bloc: _collectionBloc,
         builder: (context, state) {
-          DatabaseReference filmRef = FirebaseDatabase.instance
-              .ref()
-              .child('films')
-              .child(FirebaseAuth.instance.currentUser!.uid);
-          if (state is AddToCollection) {
-            return FloatingActionButton(
-              onPressed: () async {
-                final film = state.filmInfo[0];
-                String? filmId = filmRef.push().key.toString();
-                await filmRef.child(filmId.toString()).set(
-                  {
-                    'filmName': film.nameRu ?? film.nameOriginal,
-                    'filmId': filmId,
-                    'kinopoiskId': widget.id,
-                    'posterUrl': film.posterUrl,
-                  },
-                );
-                _collectionBloc.add(
-                  CheckIfInCollection(
-                    id: widget.id.toString(),
-                  ),
-                );
-              },
-              child: state.icon,
-            );
-          }
-          if (state is RemoveFromCollection) {
-            return FloatingActionButton(
-              onPressed: () async {
-                await filmRef.child(state.filmId).remove();
-                _collectionBloc
-                    .add(CheckIfInCollection(id: widget.id.toString()));
-              },
-              child: state.icon,
-            );
+          if (state is LoadedCollectionList) {
+            bool collected = state.filmsList
+                .any((film) => widget.id.toString() == film.kinopoiskId);
+            if (collected == true) {
+              return FloatingActionButton(
+                onPressed: () {
+                  _collectionBloc.add(RemoveFilm(id: widget.id));
+                  _collectionBloc.add(LoadCollectionList());
+                },
+                child: const Icon(Icons.favorite),
+              );
+            } else {
+              return FloatingActionButton(
+                onPressed: () {
+                  _collectionBloc.add(AddFilm(id: widget.id));
+                  _collectionBloc.add(LoadCollectionList());
+                },
+                child: const Icon(Icons.favorite_border),
+              );
+            }
           }
           return const SizedBox();
         },

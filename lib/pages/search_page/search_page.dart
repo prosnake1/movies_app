@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/i18n/strings.g.dart';
 import 'package:movie_app/pages/search_page/bloc/searched_films_bloc.dart';
+import 'package:movie_app/repositories/searched_films/searched_films.dart';
 import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:movie_app/theme/theme.dart';
 
@@ -16,7 +17,8 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final _searchedFilmBloc = GetIt.I.get<SearchedFilmBloc>();
+  final _searchedFilmBloc =
+      SearchedFilmBloc(GetIt.I.get<AbstractSearchedFilmsRep>());
   final controller = TextEditingController();
   @override
   void dispose() {

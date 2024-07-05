@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/i18n/strings.g.dart';
 import 'package:movie_app/pages/collection_page/bloc/collection_bloc.dart';
@@ -17,7 +18,8 @@ class CollectionPage extends StatefulWidget {
 }
 
 class _CollectionPageState extends State<CollectionPage> {
-  final _collectionBloc = CollectionBloc();
+  final _collectionBloc = GetIt.I.get<CollectionBloc>();
+
   @override
   void initState() {
     _collectionBloc.add(LoadCollectionList());

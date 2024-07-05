@@ -19,7 +19,7 @@ Future<List<CollectionFilm>> fetchData() async {
       Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
       values.forEach((key, value) {
         CollectionFilm film = CollectionFilm(
-            filmId: value['filmId'],
+            filmId: value['kinopoiskId'].toString(),
             filmName: value['filmName'],
             kinopoiskId: value['kinopoiskId'].toString(),
             posterUrl: value['posterUrl']);
