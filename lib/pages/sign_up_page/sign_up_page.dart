@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movie_app/i18n/strings.g.dart';
+import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:ndialog/ndialog.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -30,18 +31,14 @@ class SignUpPage extends StatelessWidget {
                 hintText: context.t.sign_up_page.name,
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            10.ph,
             TextField(
               controller: emailController,
               decoration: InputDecoration(
                 hintText: context.t.sign_up_page.email,
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            10.ph,
             TextField(
               controller: passwordController,
               obscureText: true,
@@ -49,9 +46,7 @@ class SignUpPage extends StatelessWidget {
                 hintText: context.t.sign_up_page.password,
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            10.ph,
             TextField(
               controller: confirmController,
               obscureText: true,
@@ -59,9 +54,7 @@ class SignUpPage extends StatelessWidget {
                 hintText: context.t.sign_up_page.confirm_pass,
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            10.ph,
             ElevatedButton(
               onPressed: () async {
                 var fullName = fullNameController.text.trim();
@@ -143,9 +136,7 @@ class SignUpPage extends StatelessWidget {
               },
               child: Text(context.t.sign_up_page.sign_in),
             ),
-            const SizedBox(
-              height: 100,
-            )
+            100.ph,
           ],
         ),
       ),

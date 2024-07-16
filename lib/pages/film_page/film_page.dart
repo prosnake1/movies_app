@@ -5,7 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:movie_app/i18n/strings.g.dart';
 import 'package:movie_app/pages/collection_page/bloc/collection_bloc.dart';
 import 'package:movie_app/pages/film_page/bloc/film_info_bloc.dart';
-import 'package:movie_app/repositories/film_info/film_info.dart';
 import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:movie_app/theme/theme.dart';
 
@@ -23,10 +22,6 @@ class FilmPage extends StatefulWidget {
 class _FilmPageState extends State<FilmPage> {
   final _filmInfoBloc = GetIt.I.get<FilmInfoBloc>();
   final _collectionBloc = GetIt.I.get<CollectionBloc>();
-=======
-  final _filmInfoBloc = FilmInfoBloc(GetIt.I.get<AbstractFilmInfoRep>());
-  final _collectionBloc = CollectionBloc();
->>>>>>> adf824bae08de1b66c6c02efd594953273ae2df4
   @override
   void initState() {
     _filmInfoBloc.add(LoadInfoList(id: widget.id));
@@ -52,7 +47,7 @@ class _FilmPageState extends State<FilmPage> {
                     alignment: Alignment.center,
                     child: CachedNetworkImage(
                       imageUrl: infoList.posterUrl,
-                      height: 300.ph.height,
+                      height: 300,
                       alignment: Alignment.center,
                     ),
                   ),
@@ -81,9 +76,7 @@ class _FilmPageState extends State<FilmPage> {
                           infoList.genres!.join(', ').toString(),
                           style: lightTheme.textTheme.titleMedium,
                         ),
-                        SizedBox(
-                          height: 20.ph.height,
-                        ),
+                        20.ph,
                         Text(
                           infoList.description ?? '',
                           style: lightTheme.textTheme.titleMedium,
@@ -135,7 +128,6 @@ class _FilmPageState extends State<FilmPage> {
               return FloatingActionButton(
                 onPressed: () {
                   _collectionBloc.add(RemoveFilm(id: widget.id));
-                  _collectionBloc.add(LoadCollectionList());
                 },
                 child: const Icon(Icons.favorite),
               );
@@ -143,7 +135,6 @@ class _FilmPageState extends State<FilmPage> {
               return FloatingActionButton(
                 onPressed: () {
                   _collectionBloc.add(AddFilm(id: widget.id));
-                  _collectionBloc.add(LoadCollectionList());
                 },
                 child: const Icon(Icons.favorite_border),
               );

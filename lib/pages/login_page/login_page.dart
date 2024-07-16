@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/i18n/strings.g.dart';
+import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:ndialog/ndialog.dart';
 
 class LoginPage extends StatefulWidget {
@@ -48,9 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 labelText: context.t.login_page.email,
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            20.ph,
             TextField(
               controller: passwordController,
               textAlign: TextAlign.center,

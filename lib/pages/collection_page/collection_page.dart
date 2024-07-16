@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +6,6 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/i18n/strings.g.dart';
 import 'package:movie_app/pages/collection_page/bloc/collection_bloc.dart';
-import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:movie_app/theme/theme.dart';
 
 class CollectionPage extends StatefulWidget {
@@ -58,7 +56,7 @@ class _CollectionPageState extends State<CollectionPage> {
                       children: [
                         CachedNetworkImage(
                           imageUrl: film.posterUrl,
-                          width: 140.pw.width,
+                          width: 140,
                         ),
                         Flexible(
                           child: Column(

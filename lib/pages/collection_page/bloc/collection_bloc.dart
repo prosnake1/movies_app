@@ -34,12 +34,14 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
           'posterUrl': filmInfo[0].posterUrl,
         },
       );
+      add(LoadCollectionList());
     }
   }
 
   Future<void> _removeFilm(
       RemoveFilm event, Emitter<CollectionState> emit) async {
     await filmRef.child(event.id.toString()).remove();
+    add(LoadCollectionList());
   }
 
   Future<void> _loadList(

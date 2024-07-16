@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_app/i18n/strings.g.dart';
 import 'package:movie_app/pages/home_page/bloc/top_films_bloc.dart';
 import 'package:movie_app/pages/home_page/widgets/widgets.dart';
-import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:movie_app/repositories/top_films/top_films.dart';
 import 'package:movie_app/theme/theme.dart';
 
@@ -101,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: 30.pw.width,
+                              width: 30,
                               child: Center(
                                 child: Text((i + 1).toString(),
                                     style: lightTheme.textTheme.titleLarge),
@@ -109,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             CachedNetworkImage(
                               imageUrl: film.posterUrl,
-                              width: 140.pw.width,
+                              width: 140,
                             ),
                             Flexible(
                               child: Column(
