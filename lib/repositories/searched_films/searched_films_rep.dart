@@ -7,10 +7,18 @@ class SearchedFilmsRepository implements AbstractSearchedFilmsRep {
   final Dio dio;
   @override
   Future<dynamic> getFilmsList({required query, page}) async {
-    Response response = await dio.get(
-      '${Endpoints.exUrl}search-by-keyword?keyword=$query&page=$page',
-      options: options,
-    );
-    return response.data;
+    try {
+      Response response = await dio.get(
+        '${Endpoints.exUrl}search-by-keyword?keyword=$query&page=$page',
+        options: options,
+      );
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw Exception();
+      }
+    } on Object catch (e, stack) {
+      Error.throwWithStackTrace(e, stack);
+    }
   }
 }

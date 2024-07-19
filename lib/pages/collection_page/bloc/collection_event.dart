@@ -10,15 +10,17 @@ class LoadCollectionList extends CollectionEvent {
 }
 
 class RemoveFilm extends CollectionEvent {
-  RemoveFilm({required this.id});
+  RemoveFilm({required this.id, this.completer});
   final int id;
+  final Completer? completer;
   @override
   List<Object?> get props => [id];
 }
 
 class AddFilm extends CollectionEvent {
-  AddFilm({required this.id});
+  AddFilm({required this.id, this.completer});
   final int id;
+  final Completer? completer;
   @override
   List<Object?> get props => [];
 }

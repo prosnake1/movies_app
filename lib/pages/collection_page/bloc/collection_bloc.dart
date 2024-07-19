@@ -23,25 +23,40 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
       .child('films')
       .child(FirebaseAuth.instance.currentUser!.uid);
   Future<void> _addFilm(AddFilm event, Emitter<CollectionState> emit) async {
-    if (FirebaseAuth.instance.currentUser != null) {
-      List<FilmInfo> filmInfo =
-          await GetIt.I.get<AbstractFilmInfoRep>().getInfoList(id: event.id);
-      await filmRef.child(filmInfo[0].kinopoiskId.toString()).set(
-        {
-          'filmName': filmInfo[0].nameRu ?? filmInfo[0].nameOriginal,
-          'filmId': filmInfo[0].kinopoiskId,
-          'kinopoiskId': filmInfo[0].kinopoiskId,
-          'posterUrl': filmInfo[0].posterUrl,
-        },
-      );
-      add(LoadCollectionList());
+    try {
+      emit(CollectionListLoading());
+      if (FirebaseAuth.instance.currentUser != null) {
+        List<FilmInfo> filmInfo =
+            await GetIt.I.get<AbstractFilmInfoRep>().getInfoList(id: event.id);
+        await filmRef.child(filmInfo[0].kinopoiskId.toString()).set(
+          {
+            'filmName': filmInfo[0].nameRu ?? filmInfo[0].nameOriginal,
+            'filmId': filmInfo[0].kinopoiskId,
+            'kinopoiskId': filmInfo[0].kinopoiskId,
+            'posterUrl': filmInfo[0].posterUrl,
+          },
+        );
+        emit(LoadedCollectionList(filmsList: await fetchData()));
+      }
+    } catch (e, st) {
+      emit(CollectionListFailure(exception: e));
+      GetIt.I<Talker>().handle(e, st);
+    } finally {
+      event.completer?.complete();
     }
   }
 
   Future<void> _removeFilm(
       RemoveFilm event, Emitter<CollectionState> emit) async {
-    await filmRef.child(event.id.toString()).remove();
-    add(LoadCollectionList());
+    try {
+      await filmRef.child(event.id.toString()).remove();
+      emit(LoadedCollectionList(filmsList: await fetchData()));
+    } catch (e, st) {
+      emit(CollectionListFailure(exception: e));
+      GetIt.I<Talker>().handle(e, st);
+    } finally {
+      event.completer?.complete();
+    }
   }
 
   Future<void> _loadList(

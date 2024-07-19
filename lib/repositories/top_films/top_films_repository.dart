@@ -13,13 +13,17 @@ class TopFilmsRepository implements AbstractTopFilmsRep {
         Endpoints.top,
         options: options,
       );
-      final data = response.data;
-      final films =
-          (data['items'] as List).map((e) => TopFilm.fromJson(e)).toList();
-      final result = films.sublist(0, 10);
-      return result;
-    } catch (e) {
-      throw Error();
+      if (response.statusCode == 200) {
+        final data = response.data;
+        final films =
+            (data['items'] as List).map((e) => TopFilm.fromJson(e)).toList();
+        final result = films.sublist(0, 10);
+        return result;
+      } else {
+        throw Exception();
+      }
+    } on Object catch (e, stack) {
+      throw Error.throwWithStackTrace(e, stack);
     }
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +9,8 @@ import 'package:movie_app/pages/collection_page/bloc/collection_bloc.dart';
 import 'package:movie_app/pages/film_page/bloc/film_info_bloc.dart';
 import 'package:movie_app/repositories/sizes/custom_padding.dart';
 import 'package:movie_app/theme/theme.dart';
+
+import '../../repositories/film_info/film_info.dart';
 
 class FilmPage extends StatefulWidget {
   final int id;
@@ -20,7 +24,7 @@ class FilmPage extends StatefulWidget {
 }
 
 class _FilmPageState extends State<FilmPage> {
-  final _filmInfoBloc = GetIt.I.get<FilmInfoBloc>();
+  final _filmInfoBloc = FilmInfoBloc(GetIt.I.get<AbstractFilmInfoRep>());
   final _collectionBloc = GetIt.I.get<CollectionBloc>();
   @override
   void initState() {
@@ -133,12 +137,21 @@ class _FilmPageState extends State<FilmPage> {
               );
             } else {
               return FloatingActionButton(
-                onPressed: () {
-                  _collectionBloc.add(AddFilm(id: widget.id));
+                onPressed: () async {
+                  final completer = Completer();
+                  _collectionBloc
+                      .add(AddFilm(id: widget.id, completer: completer));
+                  completer.future;
                 },
                 child: const Icon(Icons.favorite_border),
               );
             }
+          }
+          if (state is CollectionListLoading) {
+            return FloatingActionButton(
+              onPressed: () {},
+              child: const CircularProgressIndicator(),
+            );
           }
           return const SizedBox();
         },

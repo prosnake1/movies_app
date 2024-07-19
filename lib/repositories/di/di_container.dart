@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie_app/pages/collection_page/bloc/collection_bloc.dart';
-import 'package:movie_app/pages/film_page/bloc/film_info_bloc.dart';
 import 'package:movie_app/pages/home_page/bloc/top_films_bloc.dart';
 import 'package:movie_app/pages/search_page/bloc/searched_films_bloc.dart';
 import 'package:movie_app/repositories/film_info/film_info.dart';
@@ -32,9 +31,6 @@ void setup() {
   );
   GetIt.I.registerLazySingleton<TopFilmsBloc>(
     () => TopFilmsBloc(GetIt.I.get<AbstractTopFilmsRep>()),
-  );
-  GetIt.I.registerLazySingleton<FilmInfoBloc>(
-    () => FilmInfoBloc(GetIt.I.get<AbstractFilmInfoRep>()),
   );
   GetIt.I.registerLazySingleton<CollectionBloc>(
     () => CollectionBloc(),
