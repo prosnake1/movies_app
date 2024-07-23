@@ -27,96 +27,99 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.t.search_page.search),
-      ),
-      body: Column(
-        children: [
-          TextField(
-            controller: controller,
-            onSubmitted: (value) {
-              _searchedFilmBloc.add(
-                LoadFilmsList(
-                  query: value,
-                  clear: true,
-                ),
-              );
-            },
-          ),
-          Expanded(
-            child: BlocBuilder<SearchedFilmBloc, SearchedFilmState>(
-              bloc: _searchedFilmBloc,
-              builder: (context, state) {
-                if (state is LoadedFilmsList) {
-                  return ListView.separated(
-                    separatorBuilder: (context, index) => const Divider(
-                      height: 10,
-                    ),
-                    shrinkWrap: true,
-                    itemCount: state.filmsList.length,
-                    itemBuilder: (context, i) {
-                      final film = state.filmsList[i];
-                      return InkWell(
-                        onTap: () => context.push(
-                          '/film/${film.filmId}',
-                          extra: film.filmId,
-                        ),
-                        child: Row(
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl: film.posterUrl,
-                              width: 140,
-                            ),
-                            Flexible(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    (context.t.language == 'English'
-                                            ? film.nameEn
-                                            : film.nameRu) ??
-                                        film.nameRu ??
-                                        context.t.errors.unknown,
-                                    style: lightTheme.textTheme.titleMedium,
-                                    overflow: TextOverflow.fade,
-                                  ),
-                                  Text(
-                                    film.year.toString(),
-                                    style: lightTheme.textTheme.titleMedium,
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                }
-                if (state is SearchedFilmsLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (state is SearchedFilmsListFailure) {
-                  return Center(
-                    child: Text(context.t.errors.smth_went_wrong),
-                  );
-                }
-                if (state is LoadedFilmsListNull) {
-                  return Center(
-                    child: Text(
-                      context.t.search_page.no_founded_films,
-                      style: lightTheme.textTheme.titleMedium,
-                    ),
-                  );
-                }
-                return const SizedBox();
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(context.t.search_page.search),
+        ),
+        body: Column(
+          children: [
+            TextField(
+              controller: controller,
+              onSubmitted: (value) {
+                _searchedFilmBloc.add(
+                  LoadFilmsList(
+                    query: value,
+                    clear: true,
+                  ),
+                );
               },
             ),
-          ),
-        ],
+            Expanded(
+              child: BlocBuilder<SearchedFilmBloc, SearchedFilmState>(
+                bloc: _searchedFilmBloc,
+                builder: (context, state) {
+                  if (state is LoadedFilmsList) {
+                    return ListView.separated(
+                      separatorBuilder: (context, index) => const Divider(
+                        height: 10,
+                      ),
+                      shrinkWrap: true,
+                      itemCount: state.filmsList.length,
+                      itemBuilder: (context, i) {
+                        final film = state.filmsList[i];
+                        return InkWell(
+                          onTap: () => context.push(
+                            '/film/${film.filmId}',
+                            extra: film.filmId,
+                          ),
+                          child: Row(
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: film.posterUrl,
+                                width: 140,
+                              ),
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      (context.t.language == 'English'
+                                              ? film.nameEn
+                                              : film.nameRu) ??
+                                          film.nameRu ??
+                                          context.t.errors.unknown,
+                                      style: lightTheme.textTheme.titleMedium,
+                                      overflow: TextOverflow.fade,
+                                    ),
+                                    Text(
+                                      film.year.toString(),
+                                      style: lightTheme.textTheme.titleMedium,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  if (state is SearchedFilmsLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (state is SearchedFilmsListFailure) {
+                    return Center(
+                      child: Text(context.t.errors.smth_went_wrong),
+                    );
+                  }
+                  if (state is LoadedFilmsListNull) {
+                    return Center(
+                      child: Text(
+                        context.t.search_page.no_founded_films,
+                        style: lightTheme.textTheme.titleMedium,
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
